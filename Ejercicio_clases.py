@@ -35,7 +35,7 @@ class Cursos:
             return print("El curso actualmente no esta disponible ")
         
         
-    def nivelCurso(self):
+    def nivelCurso(self):  #Mostrar dificultad del curso
          print(f"El curso de {self.tituloCurso} tiene un nivel {self.categoria}")
         
         
@@ -68,11 +68,11 @@ class Clase:
         self.contenidoClase = contenidoClase
         self.driveClase = driveClase
 
-    def  visualisarClase(self):
+    def  visualisarClase(self): #Info de la clase
                  print (f"\n titulo: {self.tituloClase}\n\n Fecha de la clase: {self.fechaClase} \n\n Contenido de la clase: {self.contenidoClase} \n\n URLDrive: {self.driveClase} ")
     
 
-    def linkDrive(self):
+    def linkDrive(self): #Link del drive
          return print(f"{self.tituloClase}\n Drive: {self.driveClase}")
                  
 
@@ -98,7 +98,7 @@ clases y de varios cursos. De cada docente se desea guardar su apellido, nombre,
 nacimiento, dirección, localidad, código postal, provincia, teléfono celular, email"""
 
 
-class Docentes:
+class Docentes:         #Clase docentes
     def __init__(self,nombre, apellido, dni, fechaNacimiento, direccion, localidad, codigoPostal, provincia, celular, email, estado, rol ):
         self.nombre = nombre
         self.apellido = apellido
@@ -114,7 +114,7 @@ class Docentes:
         self.rol = rol
 
           
-    def  datosDocentes(self):
+    def  datosDocentes(self):     #Datos de los docentes
         if self.rol ==  "Profesor":
          return print(f" Nombre: {self.nombre} \n apllido: {self.apellido}\n Dni: {self.dni} \n Celular: {self.celular} \n Email: {self.email} \n Rol: {self.rol}")
         else:
@@ -136,7 +136,7 @@ deberá validar que el email sea verdadero y esté en funcionamiento, enviando u
  automático al email registrado."""
 
 
-class interesados:
+class interesados:    #Datos de interesados
     def __init__(self,nombre, apellido, dni, dirección, fechaNacimiento, localidad, codigoPostal, provincia, telefono,  email ):
          self.nombre  = nombre
          self.apellido = apellido
@@ -151,11 +151,11 @@ class interesados:
 
          self.email = email
 
-    def datosInteresados(self):
+    def datosInteresados(self): #Info del usuario interesado
          return print(f" nombre: {self.nombre} \n Apellido: {self.apellido} \n dni: {self.dni} \n direccion {self.direccion} \n fecha: {self.fechaNacimiento} \n localidad: {self.localidad} \n  codigo postal: {self.codigo}, \n provincia: {self.provincia},\n telefono: {self.telefono},\n Email: {self.email}")
 
 
-    def validacionEmail(self):
+    def validacionEmail(self):       #Validar el Email y activacion de la cuenta
          patron = r"^[\w\.-]+@[\w\.-]+\.\w+$"
          if  re.match(patron, self.email):
             print(f"Se envio un codigo de validacion a su correo: {self.email}")
@@ -165,6 +165,7 @@ class interesados:
                 print()
                 codigo2 = input("repide nuevamente el codigo: ")
                 if codigo1 == codigo2 and codigo1 != "":
+                      self.estado = "Activo"
                       print(f"El codigo fue correcto Bienvenido {self.nombre}")
                       print()
                       break
@@ -200,7 +201,7 @@ del repositorio Github, a través de creación de issues."""
 
 
 
-class CarritoCompras:
+class CarritoCompras:   #Carrito de compra
     def __init__(self,):
         self.cursos = []
         self.medio_pago = None
@@ -210,18 +211,18 @@ class CarritoCompras:
         print(f"usted agrego al carrito el curso: {curso.tituloCurso}")
         
 
-    def calcular_total(self):
+    def calcular_total(self):    #total del carrito
         total = sum(curso.costo for curso in self.cursos)
         return total
     
-    def cuponDescuento(self):
+    def cuponDescuento(self): #Cupon de descuento
          cupon = "Descuento50%"
          usuario = input("Escribe el cupon de descuento: ")
          if usuario == cupon:
             total = sum(curso.costo for curso in self.cursos)
             return print("Felicidades su cupon es valido El valor final es: ", total * 0.5 )
          
-    def seleccionar_medio_pago(self, medio_pago):
+    def seleccionar_medio_pago(self, medio_pago):       #Cargar el medio de pago
         print(f"Usted Cargo estos datos {medio_pago}")
         self.medio_pago = medio_pago
          
@@ -232,7 +233,7 @@ carritoCompras = CarritoCompras()
 # print("El valor total es:", carritoCompras.calcular_total())   #Da valor de 5000
 # carritoCompras.cuponDescuento() #Cupon de descuento Codigo: Descuento50% queda en 2500
 
-class MedioPago:
+class MedioPago:            #Clase de medio de pago para cargar el medio de pago y datos de la tarjeta
     def __init__(self, medioDePago, datos):
         self.medioDePago = medioDePago
         self.datos = datos
@@ -245,7 +246,7 @@ interacción con el sistema: Administrador, Docente. Los usuarios también deben
 asociado un estado (Activo / Inactivo)."""
 
 
-class UsuarioFinal:
+class UsuarioFinal:  
      def __init__(self, nombre, apellido, dni, direccion, fecha_nacimiento, email, telefono, clave_acceso, rol, estado):
           self.nombre = nombre
           self.apellido = apellido
@@ -261,7 +262,7 @@ class UsuarioFinal:
           self.carrito_compras = None
 
 
-     def inscripcionCurso(self, curso):
+     def inscripcionCurso(self, curso):  #Inscribirse a un curso viendo si no esta inscripto ya en ese curso
                if curso not in  self.curso_inscriptos and self.estado == "Activo":
                     self.curso_inscriptos.append(curso)
                     print(f"{self.nombre} se ha inscrito en el curso {curso}.")
@@ -293,7 +294,7 @@ class UsuarioFinal:
 
 
     
-     def bienvenida(self):
+     def bienvenida(self):  #Bienvenida al usuario
           if self.estado == "Activo":
                return  print(f"Bienvenido {self.nombre}")
           else:
@@ -301,19 +302,18 @@ class UsuarioFinal:
 
 
 
-
-     def agregar_al_carrito(self, curso):
+     def agregar_al_carrito(self, curso): #Agregar al carrito un curso
         if self.carrito_compras is None:
             self.carrito_compras = CarritoCompras()
         self.carrito_compras.agregar_curso(curso)
                
 
 
-     def seleccionar_medio_pago(self, medio_pago):
+     def seleccionar_medio_pago(self, medio_pago):           #Cargar medio de pago del usuario
         print(f"Usted elijio este medio de pago: {medio_pago.medioDePago}")
         self.medio_pago = medio_pago
      
-     def confirmar_compra(self):
+     def confirmar_compra(self): #Confirmar la compra
         if self.estado and self.medio_pago:
             monto_total = self.carrito_compras.calcular_total()
             print(f"Compra confirmada por {self.nombre} {self.apellido}. Monto total: ${monto_total}")
@@ -355,7 +355,7 @@ class Administrador:
 
 
 
-     def deshabilitar_cuenta(self, usuario):
+     def deshabilitar_cuenta(self, usuario): 
         usuario.estado = "Inactivo"
         print(f"Cuenta de {usuario.nombre} deshabilitada.")
 
@@ -365,7 +365,7 @@ class Administrador:
           print(f"Cuenta de {usuario.nombre} Se encuentra Activa")
 
         
-     def asignar_Rol(self, usuario):
+     def asignar_Rol(self, usuario):     #Asignarle el rol al usuario Profesor/Alumno/Administrador
          if self.rol == "Administrador":
               print(f"-----!Que Rol Desea asignarlse ah {usuario.nombre}!-----")
               print("")
