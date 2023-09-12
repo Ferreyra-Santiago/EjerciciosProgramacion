@@ -163,7 +163,7 @@ class interesados:    #Datos de interesados
             while True:
                 codigo1 = input("ingresa el el codigo recibido: ")
                 print()
-                codigo2 = input("repide nuevamente el codigo: ")
+                codigo2 = input("repite nuevamente el codigo: ")
                 if codigo1 == codigo2 and codigo1 != "":
                       self.estado = "Activo"
                       print(f"El codigo fue correcto Bienvenido {self.nombre}")
@@ -183,7 +183,7 @@ usuario = interesados("Santiago","Ferreyra","43888888","callefalsa123","23/03/20
 
 # usuario.datosInteresados()  #Visualizar los datos del usuario
 
-# usuario.validacionEmail()  #Validar si el correo es valido
+usuario.validacionEmail()  #Validar si el correo es valido
 
 
 
