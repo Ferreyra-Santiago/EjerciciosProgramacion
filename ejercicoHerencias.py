@@ -1,4 +1,5 @@
 import re
+from enum import Enum
 
 class Cursos:
     def __init__(self,inicio, tituloCurso, descripcion, objetivo, programa, costo, duracionMeses, fotos, estado, categoria ):
@@ -262,24 +263,37 @@ class Compra:
         self.monto_total = monto_total
 
 """-------------------------------------------------------------------------------------------------------------------------------------------------------"""
-
-class MediosDeContacto(Usuario):
-    def __init__(self, nombre, apellido, dni, fecha_nacimiento, direccion, localidad, codigo_postal, provincia, telefono_celular, email, estado, rol, id_medioContacto, fecha):
-        super().__init__(nombre, apellido, dni, fecha_nacimiento, direccion, localidad, codigo_postal, provincia, telefono_celular, email, estado, rol)
-        self.id_medioContacto = id_medioContacto
+class MediosDeContacto:
+    def __init__(self, Id_MedioContacto, fecha, email, telefono, direccion, nombre):
+        self.Id_MedioContacto = Id_MedioContacto
         self.fecha = fecha
-
+        self.email = email
+        self.telefono = telefono
+        self.direccion = direccion
+        self.nombre = nombre
 
 """-------------------------------------------------------------------------------------------------------------------------------------------------------"""
+class Tipos_medioContacto(MediosDeContacto, Enum):
 
-class MedioDeContacto(MediosDeContacto):
-    def __init__(self, nombre, apellido, dni, fecha_nacimiento, direccion, localidad, codigo_postal, provincia, telefono_celular, email, estado, rol, id_medioContacto, fecha, tipo):
-        super().__init__(nombre, apellido, dni, fecha_nacimiento, direccion, localidad, codigo_postal, provincia, telefono_celular, email, estado, rol, id_medioContacto, fecha)
-        self.tipo  = tipo
+    whatsapp = ("Whatsapp",1)
+    correoElectronico = ("correo electronico",2)
+    call_center = ("call center",3)
+    referido_interno = ("Referido interno", 4)
 
-    def mostrarMedioDeContacto(self):
-        return print(f"El tipo de medio de contacto Elegido por {self.nombre} {self.apellido} es: {self.tipo}")
+    def __init__(self, nombre, valor):
+        self.nombre = nombre
+        self.valor = valor
 
+whatsapp = Tipos_medioContacto.whatsapp
+correo = Tipos_medioContacto.correoElectronico
+callCenter = Tipos_medioContacto.call_center
+referidoInterno = Tipos_medioContacto.referido_interno
+
+PersonaEjemplo = MediosDeContacto(whatsapp.value[1], "23/03/02", "asdgfasd@gmail.com", "357646464", "calle falsa 123", "Santiago")
+
+print(PersonaEjemplo.fecha)
+print (PersonaEjemplo.email)
+print(PersonaEjemplo.Id_MedioContacto)
 """-------------------------------------------------------------------------------------------------------------------------------------------------------"""
 
 
@@ -410,15 +424,15 @@ usuarioN1 = UsuarioFinal("Santiago","Ferreyra","43884795","35/03/2900","Calle fa
 
 
 
-"""----------------------------------------------------Class  MedioDeContactos----------------------------------------------------------------------------------------"""
+"""----------------------------------------------------Class  tipoDeMedioDeContactos----------------------------------------------------------------------------------------"""
 
-usuarioContacto1 = MedioDeContacto("Pedro","Perez","4654321","16/01/1966","Calle falsa 123","El tio","2434","Cordoba","32478341","pedro@gmail.com","Activo","Alumno","222","18/03/2023","Whatssap")
-usuarioContacto2 = MedioDeContacto("franco","Ferreyra","4654321","28/06/1975","Calle falsa 123","arroyito","2434","Cordoba","324465341","gato@gmail.com","Activo","Alumno","223","16/08/2023","Referido interno")
-usuarioContacto3 = MedioDeContacto("carolina","carignano","4654321","14/08/1986","Calle falsa 123","El tio","2434","Cordoba","32478341","pedro@gmail.com","Activo","Alumno","224","22/01/2023","Call Center")
-usuarioContacto4 = MedioDeContacto("antonio","pascal","444654321","22/06/1995","Calle falsa 123","arroyito","2434","Cordoba","32478341","antinop@gmail.com","Activo","Alumno","225","25/06/2023","Correo Electronico")
+# usuarioContacto1 = tipoDeMedioDeContacto("Pedro","Perez","4654321","16/01/1966","Calle falsa 123","El tio","2434","Cordoba","32478341","pedro@gmail.com","Activo","Alumno","222","18/03/2023","Whatssap")
+# usuarioContacto2 = tipoDeMedioDeContacto("franco","Ferreyra","4654321","28/06/1975","Calle falsa 123","arroyito","2434","Cordoba","324465341","gato@gmail.com","Activo","Alumno","223","16/08/2023","Referido interno")
+# usuarioContacto3 = tipoDeMedioDeContacto("carolina","carignano","4654321","14/08/1986","Calle falsa 123","El tio","2434","Cordoba","32478341","pedro@gmail.com","Activo","Alumno","224","22/01/2023","Call Center")
+# usuarioContacto4 = tipoDeMedioDeContacto("antonio","pascal","444654321","22/06/1995","Calle falsa 123","arroyito","2434","Cordoba","32478341","antinop@gmail.com","Activo","Alumno","225","25/06/2023","Correo Electronico")
 
 
-# usuarioContacto1.mostrarMedioDeContacto()
-# usuarioContacto2.mostrarMedioDeContacto()
-# usuarioContacto3.mostrarMedioDeContacto()
-# usuarioContacto4.mostrarMedioDeContacto()
+# usuarioContacto1.mostrartipoDeMedioDeContacto()
+# usuarioContacto2.mostrartipoDeMedioDeContacto()
+# usuarioContacto3.mostrartipoDeMedioDeContacto()
+# usuarioContacto4.mostrartipoDeMedioDeContacto()
